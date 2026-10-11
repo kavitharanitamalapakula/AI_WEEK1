@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Ask</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Ask AI</h1>
+        <form id="ask-form">
+          <label for="question">Your question</label>
+          <textarea
+            id="question"
+            name="question"
+            rows="5"
+            placeholder="Ask anything..."
+            required
+          ></textarea>
+
+          <button type="submit" id="submit-btn">Ask</button>
+        </form>
+
+        <div class="response-box">
+          <h2>Answer</h2>
+          <p id="answer">Your AI response will appear here.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>

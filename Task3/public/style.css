@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+
+:root {
+  color-scheme: light;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  color: #1e3029;
+  background: #f4f7f2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 12% 14%, rgba(172, 211, 183, 0.34), transparent 31rem),
+    radial-gradient(ellipse at 88% 83%, rgba(215, 224, 183, 0.34), transparent 28rem),
+    #f4f7f2;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.page {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  justify-items: center;
+  padding: 48px 20px 24px;
+}
+
+.card {
+  width: min(100%, 580px);
+  padding: 42px;
+  border: 1px solid #e3e9e1;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 26px 80px rgba(42, 66, 49, 0.11);
+}
+
+.eyebrow,
+.result-kicker {
+  color: #497859;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.sparkle {
+  font-size: 1rem;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  letter-spacing: -0.05em;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 6vw, 2.45rem);
+  line-height: 1.15;
+}
+
+.intro {
+  margin: 14px 0 28px;
+  color: #738078;
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+form,
+.field {
+  display: grid;
+}
+
+form {
+  gap: 18px;
+}
+
+.field {
+  gap: 9px;
+}
+
+label {
+  color: #34463b;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  min-height: 142px;
+  padding: 14px 15px;
+  resize: vertical;
+  border: 1px solid #dce5dc;
+  border-radius: 11px;
+  outline: none;
+  background: #fbfcfa;
+  color: #1e3029;
+  line-height: 1.55;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+textarea::placeholder {
+  color: #9aa79d;
+}
+
+textarea:focus {
+  border-color: #568365;
+  box-shadow: 0 0 0 3px rgba(86, 131, 101, 0.14);
+}
+
+.field-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #849087;
+  font-size: 0.75rem;
+}
+
+button {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 10px;
+  background: #286544;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #205536;
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(77, 138, 104, 0.35);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.button-arrow {
+  font-size: 1.25rem;
+}
+
+.result-section {
+  margin-top: 27px;
+  padding-top: 23px;
+  border-top: 1px solid #e8ede7;
+}
+
+.result-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.result-kicker {
+  margin-bottom: 5px;
+  font-size: 0.62rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+.badge {
+  padding: 5px 9px;
+  border: 1px solid #dce9df;
+  border-radius: 999px;
+  background: #f2f8f3;
+  color: #477657;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.result {
+  overflow-x: auto;
+  margin: 0;
+  padding: 17px;
+  border: 1px solid #e3eae2;
+  border-radius: 11px;
+  background: #f7f9f6;
+  color: #34463b;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.error {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border: 1px solid #efd0ca;
+  border-radius: 9px;
+  background: #fff5f2;
+  color: #9b382d;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.page-note {
+  margin: 17px 0 0;
+  color: #87938b;
+  font-size: 0.76rem;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding: 24px 14px;
+  }
+
+  .card {
+    padding: 29px 22px;
+  }
+}

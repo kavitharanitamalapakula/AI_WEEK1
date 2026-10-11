@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Submit a user profile and validate its details."
+    />
+    <title>User Profile | Task 2</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="profile-card" aria-labelledby="page-title">
+        <div class="eyebrow">TASK 2 · USER API</div>
+        <h1 id="page-title">Create a user profile</h1>
+        <p class="intro">
+          Enter the profile details below. The server will validate them when
+          you submit.
+        </p>
+
+        <form id="profile-form">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="e.g. Kavitha Rani"
+              autocomplete="name"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="age">Age</label>
+            <input
+              id="age"
+              name="age"
+              type="number"
+              min="18"
+              max="120"
+              step="1"
+              placeholder="18–120"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="pan">PAN number</label>
+            <input
+              id="pan"
+              name="pan"
+              type="text"
+              placeholder="ABCDE1234F"
+              pattern="[A-Z]{5}[0-9]{4}[A-Z]"
+              title="Use 5 uppercase letters, 4 digits, then 1 uppercase letter."
+              maxlength="10"
+              autocapitalize="characters"
+              required
+            />
+            <span class="field-hint">Format: 5 letters, 4 digits, 1 letter</span>
+          </div>
+
+          <button id="submit-button" type="submit">Validate profile</button>
+        </form>
+
+        <div id="result" class="result" role="status" aria-live="polite" hidden></div>
+      </section>
+      <p class="page-note">Your profile is sent to the local Task 2 server.</p>
+    </main>
+  </body>
+</html>
