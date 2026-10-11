@@ -11,8 +11,8 @@ app.use(express.static(path.join(__dirname, "public")));
 const UserProfile = z.object({
     name: z.string().trim().min(1, "Name is required"),
     age: z.number().int().min(18).max(120),
-    email: z.string().email("Invalid email address"),
-    pan: z.string().regex(
+    email: z.string().trim().email("Invalid email address"),
+    pan: z.string().trim().toUpperCase().regex(
         /^[A-Z]{5}[0-9]{4}[A-Z]$/,
         "Invalid PAN format"
     ),

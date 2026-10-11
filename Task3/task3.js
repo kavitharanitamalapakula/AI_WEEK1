@@ -12,8 +12,8 @@ app.use(express.static(path.join(__dirname, "public")));
 const UserProfile = z.object({
   name: z.string().trim().min(1, "Name is required"),
   age: z.number().int().min(18).max(120),
-  email: z.string().email("Invalid email address"),
-  pan: z.string().regex(/^[A-Z]{5}[0-9]{4}[A-Z]$/, "Invalid PAN format"),
+  email: z.string().trim().email("Invalid email address"),
+  pan: z.string().trim().toUpperCase().regex(/^[A-Z]{5}[0-9]{4}[A-Z]$/, "Invalid PAN format"),
 });
 
 const groq = process.env.GROQ_API_KEY
@@ -63,9 +63,18 @@ app.post("/profiles/generate", async (req, res) => {
       return res.status(502).json({ error: "The LLM returned an empty response" });
     }
 
+    const rawContent = Array.isArray(content)
+      ? content.map((part) => (typeof part?.text === "string" ? part.text : "")).join("")
+      : typeof content === "string"
+        ? content
+        : JSON.stringify(content);
+
+    const sanitizedContent = rawContent.trim();
+    const jsonContent = sanitizedContent.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "").trim();
+
     let profile;
     try {
-      profile = UserProfile.parse(JSON.parse(content));
+      profile = UserProfile.parse(JSON.parse(jsonContent));
     } catch (error) {
       if (error instanceof SyntaxError || error instanceof z.ZodError) {
         console.error("Groq returned a profile that failed validation:", error.message);

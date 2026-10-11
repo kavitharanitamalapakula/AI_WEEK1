@@ -23,7 +23,7 @@ const groq = process.env.GROQ_API_KEY
 
 app.post("/ask", async (req, res) => {
   try {
-    const { question } = req.body;
+    const question = typeof req.body?.question === "string" ? req.body.question.trim() : "";
 
     if (!question) {
       return res.status(400).json({
@@ -38,7 +38,7 @@ app.post("/ask", async (req, res) => {
     }
 
     const completion = await groq.chat.completions.create({
-      model: process.env.GROQ_MODEL,
+      model: process.env.GROQ_MODEL || "openai/gpt-oss-120b",
       messages: [
         {
           role: "user",
@@ -47,11 +47,18 @@ app.post("/ask", async (req, res) => {
       ],
     });
 
+    const answer = completion.choices?.[0]?.message?.content;
+    const text = Array.isArray(answer)
+      ? answer.map((part) => (typeof part?.text === "string" ? part.text : "")).join("")
+      : typeof answer === "string"
+        ? answer
+        : JSON.stringify(answer ?? "");
+
     res.json({
-      answer: completion.choices[0].message.content,
+      answer: text,
     });
   } catch (error) {
-    console.error("Groq API error:", error.message);
+    console.error("Groq API error:", error?.message || error);
     res.status(500).json({
       error: "Failed to get an AI response",
     });
